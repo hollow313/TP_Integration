@@ -1,5 +1,5 @@
-var secrets = require('../config/secrets');
-var nodemailer = require("nodemailer");
+
+
 var transporter = nodemailer.createTransport({
   service: 'SendGrid',
   auth: {
@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport({
  */
 exports.getContact = function(req, res) {
   res.render('contact', {
-    title: 'Contact'
+  
   });
 };
 
@@ -22,12 +22,6 @@ exports.getContact = function(req, res) {
  * POST /contact
  * Send a contact form via Nodemailer.
  */
-exports.postContact = function(req, res) {
-  req.assert('name', 'Name cannot be blank').notEmpty();
-  req.assert('email', 'Email is not valid').isEmail();
-  req.assert('message', 'Message cannot be blank').notEmpty();
-
-  var errors = req.validationErrors();
 
   if (errors) {
     req.flash('errors', errors);
